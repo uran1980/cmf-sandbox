@@ -10,3 +10,11 @@
     <img src="data:{{ img['jcr:mimeType'] }};base64,{{ img['jcr:data'] }}">
 </div>
 {% endblock %}
+
+{% block bottom_scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        // TODO: vie_phpcr_path has to be overridden here
+        //vie_phpcr_path = '{{ path('liip_vie_phpcr_odm_put_document', {'id': ''}) }}';
+    </script>
+{% endblock %}
