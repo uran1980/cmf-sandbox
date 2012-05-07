@@ -1,0 +1,22 @@
+{% extends "SandboxMainBundle::skeleton.html.twig" %}
+
+{% block content %}
+    <div xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
+         typeof="sioc:Post"
+         about="{{ page.path }}"
+         class="articleContainer">
+
+        <h1>{{ page.title|raw }}</h1>
+        <div property="sioc:content">
+            {{ page.content|raw }}
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom_scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        vie_phpcr_path = '{{ path('magnolia_write', {'id': ''}) }}';
+    </script>
+{% endblock %}

@@ -25,6 +25,7 @@ fos_js_routing:
 phpcrbrowser:
     resource: @SymfonyCmfTreeBrowserBundle/Resources/config/routing/phpcrbrowser.xml
     prefix: /admin/browser
+
 phpcrodmbrowser:
     resource: @SonataDoctrinePHPCRAdminBundle/Resources/config/routing/phpcrodmbrowser.xml
     prefix: /admin/browser
@@ -32,12 +33,6 @@ phpcrodmbrowser:
 test:
     pattern:  /hello
     defaults: { _controller: SandboxTestBundle:Test:index }
-
-test2:
-    pattern:  /magnolia/{article}
-    defaults: { _controller: SandboxTestBundle:Test:magnolia, article: article }
-    requirements:
-        article: .+
 
 image_upload:
     pattern: /image/upload/
@@ -61,11 +56,4 @@ liip_search:
     resource: "@SymfonyCmfSearchBundle/Resources/config/routing.yml"
 
 magnolia:
-    pattern: /magnolia
-    defaults: { _controller: SandboxTestBundle:Test:magnolia }
-
-magnolia_write:
-    pattern: /magnolia_write/{contentPath}
-    defaults: { _controller: SandboxTestBundle:Test:magnoliaWrite }
-    requirements:
-        contentPath: '[A-Za-z0-9\.\/\-]+'
+    resource: '@SandboxMagnoliaBundle/Resources/config/routing.yml'

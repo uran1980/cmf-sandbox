@@ -50,6 +50,9 @@ class AppKernel extends Kernel
             new Sandbox\AdminBundle\SandboxAdminBundle(),
             new Sandbox\BlockBundle\SandboxBlockBundle(),
 
+            // Magnolia
+            new Sandbox\MagnoliaBundle\SandboxMagnoliaBundle(),
+
             // admin bundle
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
