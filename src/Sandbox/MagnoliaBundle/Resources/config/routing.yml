@@ -19,3 +19,6 @@ magnolia_write:
     defaults: { _controller: SandboxMagnoliaBundle:Magnolia:magnoliaWrite }
     requirements:
         contentPath: '[A-Za-z0-9\.\/\-]+'
+
+magnolia_writes:
+    pattern: /magnolia_write
