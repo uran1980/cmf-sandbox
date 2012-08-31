@@ -45,11 +45,7 @@ class MagnoliaController extends Controller
                 $website->save();
                 $properties = $subnode->getNode('00')->getPropertiesValues();
 
-                // if the following line fails, try commenting it out and activating the one below instead
-                // dbu had problems getting the identifier to resolve. the commented line references an image by path
                 $imgNode = $dms->getNodeByIdentifier($properties['imageDmsUUID'])->getNode('document');
-                // $imgNode = $dms->getNode('/demo-project/img/bk/Opener/an-array-of-multiple-lights-in-holiday-season-fashion')->getNode('document');
-
                 $img = $imgNode->getPropertiesValues();
                 $img['jcr:data'] = base64_encode(stream_get_contents($imgNode->getProperty('jcr:data')->getBinary()));
 
