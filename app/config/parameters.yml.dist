@@ -3,7 +3,7 @@ parameters:
 
     secret: ThisTokenIsNotSoSecretChangeIt
 
-    magnolia_url: http://localhost:8888/magnoliaAuthor/.davex/
+    magnolia_url: http://localhost:8080/magnoliaAuthor/.davex/
     magnolia_user: superuser
     magnolia_pass: superuser
 
