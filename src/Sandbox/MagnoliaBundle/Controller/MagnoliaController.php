@@ -116,11 +116,14 @@ class MagnoliaController extends Controller
     {
         $dm = $this->container->get('doctrine_phpcr.odm.website_document_manager');
 
-        $doc = $dm->find(null, '/demo-project/about/subsection-articles');
+        $path = '/demo-project/about/subsection-articles';
+        $doc = $dm->find(null, $path);
 
         return $this->render('SandboxMagnoliaBundle:Magnolia:magnoliaOdm.html.twig', array(
             'section' => $doc,
             'title' => $doc->title,
+            'path' => $path,
+            'odmClass' => get_class($doc),
         ));
     }
 }
