@@ -3,12 +3,12 @@
 {% block content %}
     <div xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/"
          typeof="sioc:Post"
-         about="{{ page.path }}"
+         about="{{ node.path }}"
          class="articleContainer">
 
-        <h1>{{ page.title|raw }}</h1>
+        <h1>{{ node.title|raw }}</h1>
         <div property="sioc:content">
-            {{ page.content|raw }}
+            {{ node.content|raw }}
         </div>
     </div>
     {{ parent() }}

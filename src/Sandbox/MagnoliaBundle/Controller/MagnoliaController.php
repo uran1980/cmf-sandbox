@@ -78,7 +78,7 @@ class MagnoliaController extends Controller
 
         return $this->render('SandboxMagnoliaBundle:Magnolia:magnoliaEdit.html.twig', array(
             'title' => 'Edit magnolia',
-            'page'  => array(
+            'node'  => array(
                 'tags' => array("hulla", "holla"),
                 'path' => $path,
                 'title' => 'Edit the magnolia slogan',
@@ -101,7 +101,7 @@ class MagnoliaController extends Controller
         $session = $this->get('doctrine_phpcr')->getConnection('website');
         $node = $session->getNode('/' . $id);
 
-        $node->setProperty('slogan', strip_tags($params['<http://rdfs.org/sioc/ns#content>']));
+        $node->setProperty('slogan', trim(strip_tags($params['<http://rdfs.org/sioc/ns#content>'])));
         $session->save();
 
         return new Response($params['<http://rdfs.org/sioc/ns#content>']);
