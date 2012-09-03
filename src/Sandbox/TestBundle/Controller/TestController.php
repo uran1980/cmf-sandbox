@@ -10,4 +10,5 @@ class TestController extends Controller
     {
         return $this->render('SandboxTestBundle:Test:index.html.twig', array('title'=>'Normal Symfony Route'));
     }
+
 }
