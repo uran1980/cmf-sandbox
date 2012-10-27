@@ -64,34 +64,4 @@ class MagnoliaDocumentClassMapper extends DocumentClassMapper
 
         return $className;
     }
-
-    /**
-     * Write any relevant meta data into the node to be able to map back to a class name later
-     *
-     * @param DocumentManager
-     * @param NodeInterface $node
-     * @param string $className
-     */
-    public function writeMetadata(DocumentManager $dm, NodeInterface $node, $className)
-    {
-        if ('Doctrine\ODM\PHPCR\Document\Generic' !== $className) {
-            $node->setProperty('phpcr:class', $className, PropertyType::STRING);
-        }
-    }
-
-    /**
-     * @param DocumentManager
-     * @param object $document
-     * @param string $className
-     * @throws \InvalidArgumentException
-     */
-    public function validateClassName(DocumentManager $dm, $document, $className)
-    {
-        if (!$document instanceof $className) {
-            $class = $dm->getClassMetadata(get_class($document));
-            $path = $class->getIdentifierValue($document);
-            $msg = "Doctrine metadata mismatch! Requested type '$className' type does not match type '".get_class($document)."' stored in the metadata at path '$path'";
-            throw new \InvalidArgumentException($msg);
-        }
-    }
 }
