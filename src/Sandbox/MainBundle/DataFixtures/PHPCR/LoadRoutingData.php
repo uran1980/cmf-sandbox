@@ -12,8 +12,8 @@ use PHPCR\Util\NodeHelper;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
-use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route;
-use Symfony\Cmf\Bundle\RoutingExtraBundle\Document\RedirectRoute;
+use Symfony\Cmf\Bundle\RoutingBundle\Document\Route;
+use Symfony\Cmf\Bundle\RoutingBundle\Document\RedirectRoute;
 
 class LoadRoutingData extends ContainerAware implements FixtureInterface, OrderedFixtureInterface
 {
@@ -35,7 +35,7 @@ class LoadRoutingData extends ContainerAware implements FixtureInterface, Ordere
     {
         $session = $dm->getPhpcrSession();
 
-        $basepath = $this->container->getParameter('symfony_cmf_routing_extra.routing_repositoryroot');
+        $basepath = $this->container->getParameter('symfony_cmf_routing.routing_repositoryroot');
         $content_path = $this->container->getParameter('symfony_cmf_content.content_basepath');
 
         if ($session->itemExists($basepath)) {
@@ -49,51 +49,37 @@ class LoadRoutingData extends ContainerAware implements FixtureInterface, Ordere
         foreach ($locales as $locale) {
             $home = new Route;
             $home->setPosition($parent, $locale);
-            $home->setDefault('_locale', $locale);
             $home->setDefault(RouteObjectInterface::TEMPLATE_NAME, 'SandboxMainBundle:Homepage:index.html.twig');
-            $home->setRequirement('_locale', $locale);
             $home->setRouteContent($dm->find(null, "$content_path/home"));
             $dm->persist($home);
 
             $blog = new Route;
             $blog->setPosition($home, PostUtils::slugify('CMF Blog'));
-            $blog->setDefault('_locale', $locale);
-            $blog->setRequirement('_locale', $locale);
             $blog->setRouteContent($dm->find(null, "$content_path/CMF Blog"));
             $dm->persist($blog);
 
             $company = new Route;
             $company->setPosition($home, 'company');
-            $company->setDefault('_locale', $locale);
-            $company->setRequirement('_locale', $locale);
             $company->setRouteContent($dm->find(null, "$content_path/company"));
             $dm->persist($company);
 
             $team = new Route;
             $team->setPosition($company, 'team');
-            $team->setDefault('_locale', $locale);
-            $team->setRequirement('_locale', $locale);
             $team->setRouteContent($dm->find(null, "$content_path/team"));
             $dm->persist($team);
 
             $more = new Route;
             $more->setPosition($company, 'more');
-            $more->setDefault('_locale', $locale);
-            $more->setRequirement('_locale', $locale);
             $more->setRouteContent($dm->find(null, "$content_path/more"));
             $dm->persist($more);
 
             $projects = new Route;
             $projects->setPosition($home, 'projects');
-            $projects->setDefault('_locale', $locale);
-            $projects->setRequirement('_locale', $locale);
             $projects->setRouteContent($dm->find(null, "$content_path/projects"));
             $dm->persist($projects);
 
             $cmf = new Route;
             $cmf->setPosition($projects, 'cmf');
-            $cmf->setDefault('_locale', $locale);
-            $cmf->setRequirement('_locale', $locale);
             $cmf->setRouteContent($dm->find(null, "$content_path/cmf"));
             $dm->persist($cmf);
         }
